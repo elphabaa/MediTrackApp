@@ -2,6 +2,7 @@ package boardcrud.example.toyproject.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,9 @@ public class Pill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "pillName", nullable = false)
+    private String pillName;
+
+    @OneToMany(mappedBy = "pill", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Introduction> introduction;
 }
